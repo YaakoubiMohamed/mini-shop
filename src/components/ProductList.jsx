@@ -19,7 +19,14 @@ const ProductList = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`http://localhost:5000/api/products`);
+        // const response = await axios.get(`http://localhost:5000/api/products`);
+        const response = await axios.get('http://localhost:5000/api/products', {
+          params: {
+            limit: 2, // Set the desired limit
+            page: currentPage // Replace currentPage with the actual variable holding the page number
+          }
+        });
+        console.log(response.data);
         setProducts(response.data.products);
         setTotalPages(response.data.totalPages);
         setError(null);
